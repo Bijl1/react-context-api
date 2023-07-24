@@ -2,4 +2,16 @@ import { createContext } from "react";
  
 const ThemeContext = createContext();
  
-export { ThemeContext };
+ 
+// CREATE A WRAPPER COMPONENT
+function ThemeProviderWrapper(props) {
+ 
+  return (
+    {/* SET UP THE PROVIDER */}
+    <ThemeContext.Provider value={"dark"}>
+        {props.children}
+    </ThemeContext.Provider>
+  )
+}
+ 
+export { ThemeContext, ThemeProviderWrapper };
