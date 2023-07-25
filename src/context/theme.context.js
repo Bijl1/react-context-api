@@ -1,23 +1,23 @@
-import React, { createContext, useState } from "react";
-
+import { createContext, useState } from "react"; // <== UPDATE
+ 
 const ThemeContext = createContext();
-
-function ThemeProvider(props) {
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
+ 
+function ThemeProviderWrapper(props) {
+  const [theme, setTheme] = useState("light"); // <== ADD
+ 
+  const toggleTheme = () => {    // <== ADD
     if (theme === "light") {
       setTheme("dark");
     } else {
       setTheme("light");
     }
   };
-
+ 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>   {/* <== UPDATE  */}
       {props.children}
     </ThemeContext.Provider>
   );
 }
-
-export { ThemeContext, ThemeProvider };
+ 
+export { ThemeContext, ThemeProviderWrapper };
