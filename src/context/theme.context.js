@@ -1,19 +1,23 @@
-// src/context/theme.context.js
-
-import { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 const ThemeContext = createContext();
 
+function ThemeProvider(props) {
+  const [theme, setTheme] = useState("light");
 
-// CREATE A WRAPPER COMPONENT
-function ThemeProviderWrapper(props) {
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   return (
-    {/* SET UP THE PROVIDER */}
-    <ThemeContext.Provider value={"dark"}>
-        {props.children}
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {props.children}
     </ThemeContext.Provider>
-  )
+  );
 }
 
-export { ThemeContext, ThemeProviderWrapper };   // <== UPDATE
+export { ThemeContext, ThemeProvider };
