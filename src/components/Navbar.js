@@ -1,19 +1,32 @@
-// src/components/Navbar.js
-
 import { NavLink } from "react-router-dom";
 
-import { useContext } from "react"; // <== ADD
-import { ThemeContext } from "./../context/theme.context"; // <== ADD
+import { useContext } from "react";
+import { ThemeContext } from "./../context/theme.context";
 
 function Navbar() {
-  const value = useContext(ThemeContext); // <== ADD
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className={"Navbar " + value}>    {/* <== UPDATE  */}
+    <nav className={"Navbar " + theme}>
       <div>
-        <NavLink to="/"> Home </NavLink>
-        <NavLink to="/projects"> Projects </NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "selected" : undefined)}
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/projects"
+          className={({ isActive }) => (isActive ? "selected" : undefined)}
+        >
+          Projects
+        </NavLink>
       </div>
+
+      <button className="theme-btn" onClick={toggleTheme}>
+        {theme === "light" ? "dark 🌜" : "light 🟡"}
+      </button>
     </nav>
   );
 }
